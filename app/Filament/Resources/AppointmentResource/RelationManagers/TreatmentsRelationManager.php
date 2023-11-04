@@ -22,6 +22,13 @@ class TreatmentsRelationManager extends RelationManager
                 ->required()
                 ->maxLength(255)
                 ->columnSpan('full'),
+                Forms\Components\Select::make('room_type')
+                ->options([
+                    'PEDIATRIC' => 'PEDIATRIC',
+                    'DELUXE' => 'DELUXE',
+                    'Common' => 'Common',                    
+                ])
+                ->native(false),
             Forms\Components\Textarea::make('notes')
                 ->maxLength(65535)
                 ->columnSpan('full'),
@@ -44,12 +51,13 @@ class TreatmentsRelationManager extends RelationManager
     {
         return $table
             ->recordTitleAttribute('description')
-            ->columns([
-                Tables\Columns\TextColumn::make('description'),
+            ->columns([                
                 Tables\Columns\TextColumn::make('treatement_type'),
                 Tables\Columns\TextColumn::make('price')
                     ->money('MMK')
                     ->sortable(),
+                Tables\Columns\TextColumn::make('room_type')
+                ->sortable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime(),
             ])

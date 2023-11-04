@@ -17,6 +17,7 @@ return new class extends Migration
             $table->text('notes')->nullable();
             $table->foreignId('appointment_id')->constrained('appointments')->cascadeOnDelete();
             $table->string('treatement_type')->nullable();
+            $table->string('room_type')->nullable();
             $table->unsignedInteger('price')->nullable();
             $table->timestamps();
         });
